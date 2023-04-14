@@ -6,63 +6,107 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:08:19 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/13 16:43:49 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/14 18:29:24 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+size_t	ft_strlen(const char *s)
 {
-	size_t	i;
-	char	*d;
-	char	*s;
+	int	c;
 
-	i = 0;
-	if (!dst && !src)
-		return (NULL);
-	d = (char *)dst;
-	s = (char *)src;
-	while (i < n)
+	c = 0;
+	while (s[c] != '\0')
 	{
-		*d++ = *s++;
-		i++;
+		c++;
 	}
-	return (dst);
+	return (c);
 }
 
-char	*ft_strdup(const char *s)
+int	count_words(char const *s, char c)
 {
-	char	*str;
-	size_t	len;
+	int	words;
+	int	i;
 
-	len = ft_strlen(s) + 1;
-	str = malloc(sizeof(char) * len);
-	if (!str)
+	i = 0;
+	words = 0;
+	while (s[i])
 	{
-		return (NULL);
+		if (s[i] != c)
+		{
+			words++;
+			while (s[i] != c && s[i])
+			{
+				i++;
+			}
+		}
+		else
+			i++;
 	}
-	str = ft_memcpy(str, s, len);
+	return (words);
+}
+
+char	*strsub(char const *s, unsigned int start, size_t len)
+{
+	size_t	j;
+	char	*str;
+
+	str = malloc(sizeof(char) * (len - start + 1));
+	if (!str)
+		return (NULL);
+	j = 0;
+	while (start < len)
+	{
+		str[j] = s[start];
+		j++;
+		start++;
+	}
+	str[j] = 0;
 	return (str);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	size_t	i;
+	size_t	j;
+	int		index;
+	char	**split;
+
+	split = malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (!s || !split)
+		return (NULL);
+	i = 0;
+	j = 0;
+	index = -1;
+	while (i <= ft_strlen(s))
+	{
+		if (s[i] != c && index < 0)
+			index = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
+		{
+			split[j] = strsub(s, index, i);
+			index = -1;
+			j++;
+		}
+		i++;
+	}
+	split[j] = 0;
+	return (split);
 }
 
 char    **read_map(char *file, t_game *game)
 {
     int     fd;
     char    *line;
-    int     i;
 
-    fd = open(file, O_RDONLY);
+	fd = open(file, O_RDONLY);
     if (fd == -1)
         return (NULL);
-    i = 0;
-    while (get_next_line(fd) > 0)
-    {
-        line = get_next_line(fd);
-        game->map[i] = ft_strdup(line);
-        free(line);
-        i++;
-    }
-    game->map[i] = NULL;
+	line = malloc(sizeof(char) * 10000);
+	read(fd, line, 10000);
+	game->map = ft_split(line, '\n');
+	free(line);
     return (game->map);
 }
+

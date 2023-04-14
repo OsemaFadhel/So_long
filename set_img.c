@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:39:35 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/13 22:14:04 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/14 18:45:05 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,35 @@ void	set_img(t_game *game)
 }
 void	set_win(t_game *game, int riga, int colonna)
 {
-	if (game->map[riga][colonna] == '1')
+	while (game->map[riga])
 	{
-		mlx_put_image_to_window(game->mlx, game->win, game->wall,
-			colonna * 64, riga * 64);
-	}
-	if (game->map[riga][colonna] == '0')
-	{
-		mlx_put_image_to_window(game->mlx, game->win, game->floor,
-			colonna * 64, riga * 64);
-	}
-	if (game->map[riga][colonna] == 'P')
-	{
-		mlx_put_image_to_window(game->mlx, game->win, game->player,
-			colonna * 64, riga * 64);
-		game->player_x = riga;
-		game->player_y = colonna;
-	}
-	if (game->map[riga][colonna] == 'C')
-	{
-		mlx_put_image_to_window(game->mlx, game->win, game->coin,
-			colonna * 64, riga * 64);
+		while (game->map[riga][colonna])
+		{
+			if (game->map[riga][colonna] == '1')
+			{
+				mlx_put_image_to_window(game->mlx, game->win, game->wall,
+					colonna * 64, riga * 64);
+			}
+			if (game->map[riga][colonna] == '0')
+			{
+				mlx_put_image_to_window(game->mlx, game->win, game->floor,
+					colonna * 64, riga * 64);
+			}
+			if (game->map[riga][colonna] == 'P')
+			{
+				mlx_put_image_to_window(game->mlx, game->win, game->player,
+					colonna * 64, riga * 64);
+				game->player_x = riga;
+				game->player_y = colonna;
+			}
+			if (game->map[riga][colonna] == 'C')
+			{
+				mlx_put_image_to_window(game->mlx, game->win, game->coin,
+					colonna * 64, riga * 64);
+			}
+			colonna++;
+		}
+		riga++;
 	}
 }
 
@@ -73,7 +81,11 @@ void	check_img(t_game *game)
 
 void	set_eenem(t_game *game, int riga, int colonna)
 {
-	if (game->map[riga][colonna] == game.exit)
+	if (game->map[riga][colonna] == 'E')
+	{
+		mlx_put_image_to_window(game->mlx, game->win, game->exit,
+			colonna * 64, riga * 64);
+	}
 	{
 		mlx_put_image_to_window(game->mlx, game->win, game->exit,
 			colonna * 64, riga * 64);

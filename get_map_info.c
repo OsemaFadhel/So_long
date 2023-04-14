@@ -6,11 +6,18 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:24:10 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/13 16:41:39 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/14 18:41:41 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
+
+int	close_game(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	free_map(game);
+	return(1);
+}
 
 void    map_size(t_game *game)
 {

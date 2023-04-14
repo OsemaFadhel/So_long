@@ -6,12 +6,16 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:59:02 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/13 16:40:15 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/14 18:08:29 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef  SO_LONG_H
 # define SO_LONG_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
 
 # include <mlx.h>
 # include <unistd.h>
@@ -19,7 +23,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stdio.h>
-# include "get_next_line_bonus.h"
 # include <errno.h>
 
 # define TILE_WIDTH 64
@@ -61,6 +64,11 @@ void	set_win(t_game *game, int riga, int colonna);
 void	check_img(t_game *game);
 void	set_eenem(t_game *game, int riga, int colonna);
 void	free_map(t_game *game);
+int     close_game(t_game *game);
 
+size_t	ft_strlen(const char *s);
+int	count_words(char const *s, char c);
+char	*strsub(char const *s, unsigned int start, size_t len);
+char	**ft_split(char const *s, char c);
 
 #endif

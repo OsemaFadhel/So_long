@@ -6,21 +6,11 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:59:04 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/13 22:14:04 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/14 18:39:03 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
-
-int    ft_strlen(char *str)
-{
-    int    i;
-
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
-}
 
 int	main(int ac, char **av)
 {
@@ -33,9 +23,10 @@ int	main(int ac, char **av)
 	}
     game.map = read_map(av[1], &game);
     game.mlx = mlx_init();
-    set_img(&game);
+    map_size(&game);
     game.win = mlx_new_window(game.mlx, game.map_height, game.map_width, "So_long");
-    set_win(&game, game.map_width, game.map_height);
+    set_img(&game);
+    set_win(&game, game.map_height, game.map_width);
+    mlx_hook(game.win, 17, 0, close_game, &game);
     mlx_loop(game.mlx);
-    mlx_key_hook(game.win, key_hook, &game)
 }
