@@ -21,11 +21,6 @@ void	set_img(t_game *game)
 	if (game->start == 0)
 		game->player = mlx_xpm_file_to_image(game->mlx, "PLAYER",
 				&game->map_width, &game->map_height);
-	if (game->coin > 0)
-	{
-		game->exit = mlx_xpm_file_to_image(game->mlx, "FLOOR",
-				&game->map_width, &game->map_height);
-	}
 	if (game->coin == 0)
 		game->exit = mlx_xpm_file_to_image(game->mlx, "EXIT",
 				&game->map_width, &game->map_height);
