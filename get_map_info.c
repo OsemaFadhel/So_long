@@ -34,7 +34,7 @@ void    map_size(t_game *game)
     {
         j++;
     }
-    game->map_width = j * 64;
-    game->map_height = i * 64;
+    (*game)->map_width = (j * 64);
+    (*game)->map_height = (i * 64);
 }
 
