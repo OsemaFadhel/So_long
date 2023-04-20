@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:39:35 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/19 20:19:53 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/20 17:14:55 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,26 @@ void	set_win(t_game *game, int height, int width)
 			if (game->map[height][width] == '1')
 			{
 				mlx_put_image_to_window(game->mlx, game->win, game->wall,
-					width * 64, height * 64);
+					width, height);
 			}
-			if (game->map[height][colonna] == '0')
+			if (game->map[height][width] == '0')
 			{
 				mlx_put_image_to_window(game->mlx, game->win, game->floor,
-					colonna * 64, height * 64);
+					width, height);
 			}
-			if (game->map[height][colonna] == 'P')
+			if (game->map[height][width] == 'P')
 			{
 				mlx_put_image_to_window(game->mlx, game->win, game->player,
-					colonna * 64, height * 64);
-				game->player_x = height;
-				game->player_y = colonna;
+					width, height);
+				game->player_x = width;
+				game->player_y = height;
 			}
-			if (game->map[height][colonna] == 'C')
+			if (game->map[height][width] == 'C')
 			{
 				mlx_put_image_to_window(game->mlx, game->win, game->coin,
-					colonna * 64, height * 64);
+					width, height);
 			}
-			colonna++;
+			width++;
 		}
 		height++;
 	}
@@ -79,21 +79,21 @@ void	check_img(t_game *game)
 	game->start = 1;
 }
 
-void	set_eenem(t_game *game, int riga, int colonna)
+void	set_eenem(t_game *game, int height, int width)
 {
-	if (game->map[riga][colonna] == 'E')
+	if (game->map[height][width] == 'E')
 	{
 		mlx_put_image_to_window(game->mlx, game->win, game->exit,
-			colonna * 64, riga * 64);
+			width * 64, height * 64);
 	}
 	{
 		mlx_put_image_to_window(game->mlx, game->win, game->exit,
-			colonna * 64, riga * 64);
+			width * 64, height * 64);
 	}
-	/*if (game->map[riga][colonna] == ENEMY_S)
+	/*if (game->map[width]][height] == ENEMY_S)
 	{
-		game->enemy.x = riga;
-		game->enemy.y = colonna;
+		game->enemy.x =[width];
+		game->enemy.y = height;
 		game->enemy_num++;
 	} */
 }

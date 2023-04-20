@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:24:10 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/19 20:11:27 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/20 17:14:16 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,13 @@ void    map_size(t_game *game)
     j = 0;
     while (game->map[i])
     {
-        printf("stai zitto!!! %s\n", game->map[i]);
         i++;
     }
     while (game->map[0][j])
     {   
         j++;
     }
-    game->map_width = i * 64;
-    game->map_height = j * 64;
+    game->map_width = j * 64;
+    game->map_height = i * 64;
 }
 

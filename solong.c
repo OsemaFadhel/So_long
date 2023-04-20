@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:59:04 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/19 20:15:45 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/20 17:08:39 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
     init(&game);
     game.mlx = mlx_init();
     map_size(&game);
-    game.win = mlx_new_window(game.mlx, game.map_height, game.map_width, "So_long");
+    game.win = mlx_new_window(game.mlx, game.map_width, game.map_height, "So_long");
     set_img(&game);
     set_win(&game, game.map_height, game.map_width);
     mlx_hook(game.win, 17, 0, close_game, &game);

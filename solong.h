@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:59:02 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/19 19:47:46 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/20 17:07:51 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 # include <string.h>
 # include <stdio.h>
 # include <errno.h>
-
-# define TILE_WIDTH 64
 
 # define WALL "img/wall.xpm"
 # define FLOOR "img/floor.xpm"
