@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:24:10 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/14 18:41:41 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/19 20:11:27 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,28 @@ int	close_game(t_game *game)
 	return(1);
 }
 
+void    init(t_game *game)
+{
+	game->moves = 0;
+	//game->no_collect = 0;
+	game->player_x = 0;
+	game->player_y = 0;
+	//game->enemy_kill = 0;
+	game->start = 0;
+	//game->enemy.mv = 0;
+	//game->enemy_num = 0;
+	//game->panel.strcd = 0;
+	game->coin = 0;
+	game->floor = 0;
+	game->exit = 0;
+	game->player = 0;
+    game->map_width = 0;
+    game->map_height = 0;
+	//game->enemy.x = 0;
+	//game->enemy.y = 0;
+	//game->enemy_frame = 1;
+}
+
 void    map_size(t_game *game)
 {
     int     i;
@@ -28,13 +50,14 @@ void    map_size(t_game *game)
     j = 0;
     while (game->map[i])
     {
+        printf("stai zitto!!! %s\n", game->map[i]);
         i++;
     }
     while (game->map[0][j])
-    {
+    {   
         j++;
     }
-    (*game)->map_width = (j * 64);
-    (*game)->map_height = (i * 64);
+    game->map_width = i * 64;
+    game->map_height = j * 64;
 }
 

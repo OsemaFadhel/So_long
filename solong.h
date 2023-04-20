@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:59:02 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/14 18:08:29 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/19 19:47:46 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ void	check_img(t_game *game);
 void	set_eenem(t_game *game, int riga, int colonna);
 void	free_map(t_game *game);
 int     close_game(t_game *game);
-
+void    map_size(t_game *game);
 size_t	ft_strlen(const char *s);
 int	count_words(char const *s, char c);
 char	*strsub(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
+void    init(t_game *game);
 
 #endif

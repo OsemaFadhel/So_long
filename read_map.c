@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:08:19 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/14 18:29:24 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/19 19:13:41 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,14 +99,14 @@ char    **read_map(char *file, t_game *game)
 {
     int     fd;
     char    *line;
+	char	**map;
 
 	fd = open(file, O_RDONLY);
-    if (fd == -1)
+    if (fd < 0)
         return (NULL);
 	line = malloc(sizeof(char) * 10000);
 	read(fd, line, 10000);
-	game->map = ft_split(line, '\n');
+	map = ft_split(line, '\n');
 	free(line);
-    return (game->map);
+    return (map);
 }
-

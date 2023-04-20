@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:39:35 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/14 18:45:05 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/19 20:19:53 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,57 @@
 
 void	set_img(t_game *game)
 {
-	game->floor = mlx_xpm_file_to_image(game->mlx, "FLOOR",
+	game->floor = mlx_xpm_file_to_image(game->mlx, "img/floor.xpm",
 			&game->map_width, &game->map_height);
-	game->wall = mlx_xpm_file_to_image(game->mlx, "WALL",
+	game->wall = mlx_xpm_file_to_image(game->mlx, "img/wall.xpm",
 			&game->map_width, &game->map_height);
 	if (game->start == 0)
-		game->player = mlx_xpm_file_to_image(game->mlx, "PLAYER",
+		game->player = mlx_xpm_file_to_image(game->mlx, "img/player.xpm",
 				&game->map_width, &game->map_height);
+	/* if (game->coin > 0)
+	{
+		game->exit = mlx_xpm_file_to_image(game->mlx, "img/floor.xpm",
+				&game->map_width, &game->map_height);
+	} */ 
 	if (game->coin == 0)
-		game->exit = mlx_xpm_file_to_image(game->mlx, "EXIT",
+		game->exit = mlx_xpm_file_to_image(game->mlx, "img/exit.xpm",
 				&game->map_width, &game->map_height);
 	game->coin = mlx_xpm_file_to_image(game->mlx,
-			"COIN", &game->map_width, &game->map_height);
+			"img/coin.xpm", &game->map_width, &game->map_height);
 	/*  game->enemy = mlx_xpm_file_to_image(game->mlx, "./img/enemy.xpm",
 			&game->map_width, &game->map_height); */ 
 }
-void	set_win(t_game *game, int riga, int colonna)
+void	set_win(t_game *game, int height, int width)
 {
-	while (game->map[riga])
+	while (game->map[height])
 	{
-		while (game->map[riga][colonna])
+		while (game->map[height][width])
 		{
-			if (game->map[riga][colonna] == '1')
+			if (game->map[height][width] == '1')
 			{
 				mlx_put_image_to_window(game->mlx, game->win, game->wall,
-					colonna * 64, riga * 64);
+					width * 64, height * 64);
 			}
-			if (game->map[riga][colonna] == '0')
+			if (game->map[height][colonna] == '0')
 			{
 				mlx_put_image_to_window(game->mlx, game->win, game->floor,
-					colonna * 64, riga * 64);
+					colonna * 64, height * 64);
 			}
-			if (game->map[riga][colonna] == 'P')
+			if (game->map[height][colonna] == 'P')
 			{
 				mlx_put_image_to_window(game->mlx, game->win, game->player,
-					colonna * 64, riga * 64);
-				game->player_x = riga;
+					colonna * 64, height * 64);
+				game->player_x = height;
 				game->player_y = colonna;
 			}
-			if (game->map[riga][colonna] == 'C')
+			if (game->map[height][colonna] == 'C')
 			{
 				mlx_put_image_to_window(game->mlx, game->win, game->coin,
-					colonna * 64, riga * 64);
+					colonna * 64, height * 64);
 			}
 			colonna++;
 		}
-		riga++;
+		height++;
 	}
 }
 
