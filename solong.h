@@ -6,16 +6,12 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:59:02 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/20 17:07:51 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/20 20:37:24 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef  SO_LONG_H
 # define SO_LONG_H
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
-# endif
 
 # include <mlx.h>
 # include <unistd.h>
@@ -25,18 +21,12 @@
 # include <stdio.h>
 # include <errno.h>
 
-# define WALL "img/wall.xpm"
-# define FLOOR "img/floor.xpm"
-# define COIN "img/coin.xpm"
-# define PLAYER "img/player.xpm"
-# define EXIT "img/exit.xpm"
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
 
-# define UP 126;
-# define DOWN 125;
-# define LEFT 123;
-# define RIGHT 124;
-
-# define ESC = 53;
+# define ESC 53
 
 typedef struct s_game
 {
@@ -45,6 +35,7 @@ typedef struct s_game
 	char	**map;
 	int     player_x;
     int     player_y;
+	int		coin_count;
 	int		moves;
 	void	*floor;
 	void	*wall;
@@ -57,17 +48,27 @@ typedef struct s_game
 }               t_game;
 
 char    **read_map(char *file, t_game *game);
-void	set_img(t_game *game);
-void	set_win(t_game *game, int riga, int colonna);
+void	xpm_img(t_game *game);
+void	put_img(t_game *game, int riga, int colonna);
+void	set_win(t_game *game);
 void	check_img(t_game *game);
+void	set_exit(t_game *game, int height, int width);
 void	set_eenem(t_game *game, int riga, int colonna);
 void	free_map(t_game *game);
 int     close_game(t_game *game);
 void    map_size(t_game *game);
+
 size_t	ft_strlen(const char *s);
-int	count_words(char const *s, char c);
+int		count_words(char const *s, char c);
 char	*strsub(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
 void    init(t_game *game);
+
+
+int    	key(int keycode, t_game *game);
+int		move_up(t_game *game);
+int		move_down(t_game *game);
+int		move_left(t_game *game);
+int		move_right(t_game *game);
 
 #endif

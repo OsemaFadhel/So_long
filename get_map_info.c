@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:24:10 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/20 17:14:16 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/20 20:38:27 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	close_game(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
 	free_map(game);
-	return(1);
+	exit(1);
 }
 
 void    init(t_game *game)
@@ -25,7 +25,7 @@ void    init(t_game *game)
 	//game->no_collect = 0;
 	game->player_x = 0;
 	game->player_y = 0;
-	//game->enemy_kill = 0;
+	game->coin_count = 0;
 	game->start = 0;
 	//game->enemy.mv = 0;
 	//game->enemy_num = 0;
@@ -58,5 +58,17 @@ void    map_size(t_game *game)
     }
     game->map_width = j * 64;
     game->map_height = i * 64;
+}
+
+void	free_map(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (game->map[i])
+	{
+		free(game->map[i]);
+		i++;
+	}
 }
 
