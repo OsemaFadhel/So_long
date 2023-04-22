@@ -6,42 +6,35 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:24:10 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/20 20:38:27 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/22 17:39:23 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-int	close_game(t_game *game)
+void    init(t_game *game, t_check *check)
 {
-	mlx_destroy_window(game->mlx, game->win);
-	free_map(game);
-	exit(1);
-}
-
-void    init(t_game *game)
-{
+	check->map_height = 0;
+	check->map_width = 0;
+	check->player = 0;
+	check->exit = 0;
+	check->coin = 0;
+	check->enemy = 0;
 	game->moves = 0;
-	//game->no_collect = 0;
 	game->player_x = 0;
 	game->player_y = 0;
 	game->coin_count = 0;
 	game->start = 0;
-	//game->enemy.mv = 0;
-	//game->enemy_num = 0;
-	//game->panel.strcd = 0;
 	game->coin = 0;
 	game->floor = 0;
 	game->exit = 0;
 	game->player = 0;
     game->map_width = 0;
     game->map_height = 0;
-	//game->enemy.x = 0;
-	//game->enemy.y = 0;
-	//game->enemy_frame = 1;
+	game->enemy_move = 0;
 }
 
-void    map_size(t_game *game)
+void    map_size(t_game *game, t_check *check)
 {
     int     i;
     int     j;
@@ -56,8 +49,16 @@ void    map_size(t_game *game)
     {   
         j++;
     }
+	if (i == j)
+	{
+		printf("Error : Map must be a rectangular\n");
+		free_map(game);
+		exit(1);
+	}
     game->map_width = j * 64;
     game->map_height = i * 64;
+	check->map_width = j;
+	check->map_height = i;
 }
 
 void	free_map(t_game *game)
@@ -70,5 +71,13 @@ void	free_map(t_game *game)
 		free(game->map[i]);
 		i++;
 	}
+	i = 0;
+	while (game.check->map[i])
+	{
+		free(check->map[i]);
+		i++;
+	}
+	free(game->map);
+	free(game.check->map);
 }
 

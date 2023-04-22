@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_img.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:39:35 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/20 20:37:57 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/22 16:50:54 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,16 @@ void	xpm_img(t_game *game)
 			&game->map_width, &game->map_height);
 	game->wall = mlx_xpm_file_to_image(game->mlx, "img/wall.xpm",
 			&game->map_width, &game->map_height);
-	//if (game->start == 0)
-		game->player = mlx_xpm_file_to_image(game->mlx, "img/player.xpm",
+	game->player = mlx_xpm_file_to_image(game->mlx, "img/player.xpm",
 				&game->map_width, &game->map_height);
-	/* if (game->coin > 0)
-	{
-		game->exit = mlx_xpm_file_to_image(game->mlx, "img/floor.xpm",
-				&game->map_width, &game->map_height);
-	} */ 
-	/*if (game->coin == 0) */
 	game->exit = mlx_xpm_file_to_image(game->mlx, "img/exit.xpm",
 				&game->map_width, &game->map_height); 
-	game->coin = mlx_xpm_file_to_image(game->mlx,
-			"img/coin.xpm", &game->map_width, &game->map_height);
-	/*  game->enemy = mlx_xpm_file_to_image(game->mlx, "./img/enemy.xpm",
-			&game->map_width, &game->map_height); */ 
+	game->coin = mlx_xpm_file_to_image(game->mlx, "img/coin.xpm", 
+				&game->map_width, &game->map_height);
+	game->enemy = mlx_xpm_file_to_image(game->mlx, "./img/enemy.xpm",
+			&game->map_width, &game->map_height);
+	game->enemy_1 = mlx_xpm_file_to_image(game->mlx, "./img/enemy1.xpm",
+			&game->map_width, &game->map_height);
 }
 void	put_img(t_game *game, int height, int width)
 {
@@ -59,50 +54,45 @@ void	put_img(t_game *game, int height, int width)
 			width * 64, height * 64);
 		game->coin_count++;
 	}
-	width++;
 	if (game->map[height][width] == 'E')
 		set_exit(game, height, width);
 }
 
-/* void	check_img(t_game *game)
-{
-	if (!game->floor || !game->wall || !game->player_x 
-		|| !game->player_y || !game->exit || !game->coin)
-	{
-		printf("ERROR image\n");
-	}
-} */ 
-
 void	set_exit(t_game *game, int height, int width)
 {
-	mlx_put_image_to_window(game->mlx, game->win, game->exit,
+	if (game->coin_count == 0)
+	{
+		mlx_put_image_to_window(game->mlx, game->win, game->exit,
 			width * 64, height * 64);
+	}
+	else
+	{
+		mlx_put_image_to_window(game->mlx, game->win, game->floor,
+			width * 64, height * 64);
+	}
 }
 
-/*void	set_eenem(t_game *game, int height, int width)
+void	put_enemy(t_game *game, int height, int width)
 {
-	if (game->map[height][width] == 'E')
+	if (game->map[height][width] == 'N' && game->enemy_move == 0)
 	{
-		mlx_put_image_to_window(game->mlx, game->win, game->exit,
+		mlx_put_image_to_window(game->mlx, game->win, game->enemy,
 			width * 64, height * 64);
+		game->enemy_move = 1;
 	}
+	if (game->map[width][height] == 'N' && game->enemy_move == 1)
 	{
-		mlx_put_image_to_window(game->mlx, game->win, game->exit,
+		mlx_put_image_to_window(game->mlx, game->win, game->enemy_1,
 			width * 64, height * 64);
+		game->enemy_move = 0;
 	}
-	if (game->map[width]][height] == ENEMY_S)
-	{
-		game->enemy.x =[width];
-		game->enemy.y = height;
-		game->enemy_num++;
-	} 
-} */
+} 
+
 void	set_win(t_game *game)
 {
 	int	height;
 	int	width;
 
-	// check_img(game);
 	height = 0;
 	while (game->map[height])
 	{
@@ -110,6 +100,7 @@ void	set_win(t_game *game)
 		while (game->map[height][width])
 		{
 			put_img(game, height, width);
+			put_enemy(game, height, width);
 			width++;
 		}
 		height++;
