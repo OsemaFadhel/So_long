@@ -28,7 +28,8 @@ int	main(int ac, char **av)
 		printf("Error\nYou didn't put he map as an argument\n");
 		return(1);
 	}
-    game.map = read_map(av[1], &game);
+	check_ber(av[1]);
+	game.map = read_map(av[1], &game);
     check.map = read_map(av[1], &game);
     init(&game, &check);
     game.mlx = mlx_init();
