@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:59:04 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/24 19:37:24 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/24 22:37:19 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,27 @@ int	close_game(t_game *game)
 
 int	main(int ac, char **av)
 {
-    t_game	game;
-    t_check	check;
-    
-    if (ac != 2)
+	t_game	game;
+	t_check	check;
+
+	if (ac != 2)
 	{
-		printf("Error\nYou didn't put he map as an argument\n");
-		return(1);
+		printf("Error\nYou didn't put the map as an argument\n");
+		return (1);
 	}
-	/*check_ber(av[1]);*/
 	game.map = read_map(av[1], &game);
-    check.map = read_map(av[1], &game);
-    init(&game, &check);
-    game.mlx = mlx_init();
-    map_size(&game, &check);
-    checks(&check, &game);
-    game.win = mlx_new_window(game.mlx, game.map_width, game.map_height, "so_long");
-    xpm_img(&game);
-    set_win(&game);
-    mlx_key_hook(game.win, key, &game);
-    mlx_hook(game.win, 17, 0, close_game, &game);
-    mlx_loop(game.mlx);
-    free(game.mlx);
+	check.map = read_map(av[1], &game);
+	init(&game, &check);
+	game.mlx = mlx_init();
+	map_size(&game, &check);
+	checks(&check, &game);
+	game.win = mlx_new_window(game.mlx, game.map_width,
+			game.map_height, "so_long");
+	xpm_img(&game);
+	set_win(&game);
+	mlx_key_hook(game.win, key, &game);
+	mlx_hook(game.win, 17, 0, close_game, &game);
+	mlx_loop(game.mlx);
+	free(game.mlx);
+	return (0);
 }

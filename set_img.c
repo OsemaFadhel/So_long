@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:39:35 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/24 19:45:52 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/24 22:00:24 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,23 @@ void	xpm_img(t_game *game)
 	game->wall = mlx_xpm_file_to_image(game->mlx, "img/wall.xpm",
 			&game->map_width, &game->map_height);
 	game->player = mlx_xpm_file_to_image(game->mlx, "img/player.xpm",
-				&game->map_width, &game->map_height);
+			&game->map_width, &game->map_height);
 	game->exit = mlx_xpm_file_to_image(game->mlx, "img/exit.xpm",
-				&game->map_width, &game->map_height); 
-	game->coin = mlx_xpm_file_to_image(game->mlx, "img/coin.xpm", 
-				&game->map_width, &game->map_height);
+			&game->map_width, &game->map_height);
+	game->coin = mlx_xpm_file_to_image(game->mlx, "img/coin.xpm",
+			&game->map_width, &game->map_height);
 	game->enemy = mlx_xpm_file_to_image(game->mlx, "./img/enemy.xpm",
 			&game->map_width, &game->map_height);
 	game->enemy_1 = mlx_xpm_file_to_image(game->mlx, "./img/enemy1.xpm",
 			&game->map_width, &game->map_height);
 }
+
 void	put_img(t_game *game, int height, int width)
 {
 	if (game->map[height][width] == '1')
 	{
 		mlx_put_image_to_window(game->mlx, game->win, game->wall,
-					width * 64, height * 64);
+			width * 64, height * 64);
 	}
 	if (game->map[height][width] == '0')
 	{
@@ -59,8 +60,8 @@ void	put_img(t_game *game, int height, int width)
 
 void	put_exit(t_game *game, int height, int width)
 {
-		mlx_put_image_to_window(game->mlx, game->win, game->exit,
-			width * 64, height * 64);
+	mlx_put_image_to_window(game->mlx, game->win, game->exit,
+		width * 64, height * 64);
 }
 
 void	put_enemy(t_game *game, int height, int width)
@@ -77,7 +78,7 @@ void	put_enemy(t_game *game, int height, int width)
 			width * 64, height * 64);
 		game->enemy_move = 0;
 	}
-} 
+}
 
 void	set_win(t_game *game)
 {

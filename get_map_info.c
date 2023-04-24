@@ -6,13 +6,13 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:24:10 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/24 20:53:42 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/24 22:20:46 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-void    init(t_game *game, t_check *check)
+void	init(t_game *game, t_check *check)
 {
 	check->map_height = 0;
 	check->map_width = 0;
@@ -28,26 +28,26 @@ void    init(t_game *game, t_check *check)
 	game->floor = 0;
 	game->exit = 0;
 	game->player = 0;
-    game->map_width = 0;
-    game->map_height = 0;
+	game->map_width = 0;
+	game->map_height = 0;
 	game->enemy_move = 0;
 }
 
-void    map_size(t_game *game, t_check *check)
+void	map_size(t_game *game, t_check *check)
 {
-    int     i;
-    int     j;
+	int	i;
+	int	j;
 
-    i = 0;
-    j = 0;
-    while (game->map[i])
-    {
-        i++;
-    }
-    while (game->map[0][j])
-    {   
-        j++;
-    }
+	i = 0;
+	j = 0;
+	while (game->map[i])
+	{
+		i++;
+	}
+	while (game->map[0][j])
+	{
+		j++;
+	}
 	if (i == j)
 	{
 		printf("Error : Map must be a rectangular\n");
@@ -55,8 +55,8 @@ void    map_size(t_game *game, t_check *check)
 		free_map(game);
 		exit(1);
 	}
-    game->map_width = j * 64;
-    game->map_height = i * 64;
+	game->map_width = j * 64;
+	game->map_height = i * 64;
 	check->map_width = j;
 	check->map_height = i;
 }
@@ -74,4 +74,3 @@ void	free_map(t_game *game)
 	i = 0;
 	free(game->map);
 }
-
