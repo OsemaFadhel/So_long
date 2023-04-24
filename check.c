@@ -10,24 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "solong.h"
 
-void    check(t_check *check, t_game *game)
+void    checks(t_check *check, t_game *game)
 {
-    if (check_walls(check, check.height, check.width) == 0)
+    if (check_walls(check, check->map_height, check->map_width) == 0)
     {
-        print("ERROR, map walls\n");
+        printf("ERROR, map walls\n");
         free_map(game);
         exit(1);
     }
     check_map(check, game);
     if (check->player != 1 || check->coin == 0 || check->exit != 1)
     {
-        print("ERROR, map\n");
+        printf("ERROR, map\n");
         free_map(game);
         exit(1);
     }
-    //all checks in here;
 }
 
 int check_walls(t_check *check, int height, int width)
@@ -44,7 +43,7 @@ int check_walls(t_check *check, int height, int width)
         i++;
     }
     i = 0;
-    while (check->map)
+    while (check->map[i])
     {
         if (check->map[i][0] != '1' || check->map[i][width - 1] != '1')
         {
@@ -76,20 +75,19 @@ void	check_map(t_check *check, t_game *game)
 void    count_sprites(t_check *check, t_game *game, int height, int width)
 {
     if (check->map[height][width] == '0')
-        return (0);
-    if (check->map[height][width] == '1')
-        return (0);
-    if (check->map[height][width] == 'P')
+        return;
+    else if (check->map[height][width] == '1')
+        return;
+    else if (check->map[height][width] == 'P')
         check->player++;
     else if (check->map[height][width] == 'C')
+    {
         check->coin++;
+        game->coin_count++;
+    }
     else if (check->map[height][width] == 'E')
         check->exit++;
-    else
-    {
-        print("ERROR, map\n");
-        free_map(game);
-        exit(1);
-    }
-    return(0);
+    else if (check->map[height][width] == 'N')
+        return;
+    return;
 }

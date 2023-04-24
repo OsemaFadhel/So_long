@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:59:02 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/22 17:39:38 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/24 19:49:20 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_game
 	int		map_height;
 	int		start;
 	int		enemy_move;
-	t_check		*check;
+	t_check check;
 }               t_game;
 
 size_t	ft_strlen(const char *s);
@@ -69,7 +69,7 @@ char	**ft_split(char const *s, char c);
 void    init(t_game *game, t_check *check);
 char    **read_map(char *file, t_game *game);
 void    map_size(t_game *game, t_check *check);
-void	free_map(t_game *game,);
+void	free_map(t_game *game);
 
 void	set_win(t_game *game);
 void	xpm_img(t_game *game);
@@ -78,11 +78,11 @@ void	put_enemy(t_game *game, int height, int width);
 void	put_exit(t_game *game, int height, int width);
 int     close_game(t_game *game);
 
-void	check(t_check *check, t_game *game);
-void	check_walls(t_check *check, int height, int width);
-void    count_sprites(t_check *check, t_game *game, int height, int width);
+void	checks(t_check *check, t_game *game);
+int		check_walls(t_check *check, int height, int width);
+void	count_sprites(t_check *check, t_game *game, int height, int width);
 void	check_map(t_check *check, t_game *game);
-
+/* void	check_ber(char *file);*/
 
 int    	key(int keycode, t_game *game);
 int		move_up(t_game *game);

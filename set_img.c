@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_img.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:39:35 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/22 16:50:54 by marvin           ###   ########.fr       */
+/*   Updated: 2023/04/24 19:45:52 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,15 @@ void	put_img(t_game *game, int height, int width)
 	{
 		mlx_put_image_to_window(game->mlx, game->win, game->coin,
 			width * 64, height * 64);
-		game->coin_count++;
 	}
 	if (game->map[height][width] == 'E')
-		set_exit(game, height, width);
+		put_exit(game, height, width);
 }
 
-void	set_exit(t_game *game, int height, int width)
+void	put_exit(t_game *game, int height, int width)
 {
-	if (game->coin_count == 0)
-	{
 		mlx_put_image_to_window(game->mlx, game->win, game->exit,
 			width * 64, height * 64);
-	}
-	else
-	{
-		mlx_put_image_to_window(game->mlx, game->win, game->floor,
-			width * 64, height * 64);
-	}
 }
 
 void	put_enemy(t_game *game, int height, int width)
@@ -80,7 +71,7 @@ void	put_enemy(t_game *game, int height, int width)
 			width * 64, height * 64);
 		game->enemy_move = 1;
 	}
-	if (game->map[width][height] == 'N' && game->enemy_move == 1)
+	if (game->map[height][width] == 'N' && game->enemy_move == 1)
 	{
 		mlx_put_image_to_window(game->mlx, game->win, game->enemy_1,
 			width * 64, height * 64);

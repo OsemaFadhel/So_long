@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:58:56 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/22 16:18:00 by marvin           ###   ########.fr       */
+/*   Updated: 2023/04/24 19:50:37 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ int move_up(t_game *game)
     {
         game->map[game->player_y][game->player_x] = '0';
         game->map[game->player_y - 1][game->player_x] = 'P';
-        game->player_y--;
-        game->exit--;
         close_game(game);
     }
     else if (game->map[game->player_y - 1][game->player_x] == 'N')
@@ -75,8 +73,6 @@ int move_down(t_game *game)
     {
         game->map[game->player_y][game->player_x] = '0';
         game->map[game->player_y + 1][game->player_x] = 'P';
-        game->player_y++;
-        game->exit--;
         close_game(game);
     }
     else if (game->map[game->player_y + 1][game->player_x] == 'N')
@@ -103,8 +99,6 @@ int move_right(t_game *game)
     {
         game->map[game->player_y][game->player_x] = '0';
         game->map[game->player_y][game->player_x + 1] = 'P';
-        game->player_x++;
-        game->exit--;
         close_game(game);
     }
     else if (game->map[game->player_y][game->player_x + 1] == 'N')
@@ -131,8 +125,6 @@ int move_left(t_game *game)
     {
         game->map[game->player_y][game->player_x] = '0';
         game->map[game->player_y][game->player_x - 1] = 'P';
-        game->player_x--;
-        game->exit--;
         close_game(game);
     }
     else if (game->map[game->player_y][game->player_x - 1] == 'N')

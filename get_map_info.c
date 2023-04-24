@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:24:10 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/22 17:39:23 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/24 18:23:31 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void    init(t_game *game, t_check *check)
 	check->player = 0;
 	check->exit = 0;
 	check->coin = 0;
-	check->enemy = 0;
 	game->moves = 0;
 	game->player_x = 0;
 	game->player_y = 0;
@@ -72,12 +71,12 @@ void	free_map(t_game *game)
 		i++;
 	}
 	i = 0;
-	while (game.check->map[i])
+	while (game->check.map[i])
 	{
-		free(check->map[i]);
+		free(game->check.map[i]);
 		i++;
 	}
 	free(game->map);
-	free(game.check->map);
+	free(game->check.map);
 }
 
