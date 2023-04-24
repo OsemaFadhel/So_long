@@ -40,6 +40,7 @@ int	main(int ac, char **av)
 	xpm_img(&game);
 	set_win(&game);
 	mlx_key_hook(game.win, key, &game);
+	mlx_string_put(game.mlx, game.win, 1, 1, 12744232, itoa(game->move_count));
 	mlx_hook(game.win, 17, 0, close_game, &game);
 	mlx_loop(game.mlx);
 	free(game.mlx);
