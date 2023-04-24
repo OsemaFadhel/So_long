@@ -12,12 +12,27 @@
 
 #include "solong.h"
 
+void	free_map_check(t_check *check)
+{
+	int	i;
+
+	i = 0;
+	while (check->map[i])
+	{
+		free(check->map[i]);
+		i++;
+	}
+	i = 0;
+	free(check->map);
+}
+
 void    checks(t_check *check, t_game *game)
 {
     if (check_walls(check, check->map_height, check->map_width) == 0)
     {
         printf("ERROR, map walls\n");
         free_map(game);
+        free_map_check(check);
         exit(1);
     }
     check_map(check, game);
@@ -25,8 +40,10 @@ void    checks(t_check *check, t_game *game)
     {
         printf("ERROR, map\n");
         free_map(game);
+        free_map_check(check);
         exit(1);
     }
+    free_map_check(check);
 }
 
 int check_walls(t_check *check, int height, int width)
@@ -82,8 +99,8 @@ void    count_sprites(t_check *check, t_game *game, int height, int width)
         check->player++;
     else if (check->map[height][width] == 'C')
     {
-        check->coin++;
         game->coin_count++;
+        check->coin++;
     }
     else if (check->map[height][width] == 'E')
         check->exit++;

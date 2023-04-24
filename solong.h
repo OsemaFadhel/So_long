@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:59:02 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/24 19:49:20 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/24 20:54:42 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	checks(t_check *check, t_game *game);
 int		check_walls(t_check *check, int height, int width);
 void	count_sprites(t_check *check, t_game *game, int height, int width);
 void	check_map(t_check *check, t_game *game);
+void	free_map_check(t_check *check);
 /* void	check_ber(char *file);*/
 
 int    	key(int keycode, t_game *game);
