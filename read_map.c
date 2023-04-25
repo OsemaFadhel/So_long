@@ -104,8 +104,8 @@ char	**read_map(char *file, t_game *game)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	line = malloc(sizeof(char) * 10000);
-	read(fd, line, 10000);
+	line = malloc(sizeof(char) * 1000000);
+	read(fd, line, 1000000);
 	map = ft_split(line, '\n');
 	free(line);
 	return (map);
