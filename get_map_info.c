@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:24:10 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/24 22:20:46 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/25 16:36:52 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	map_size(t_game *game, t_check *check)
 	}
 	if (i == j)
 	{
-		printf("Error : Map must be a rectangular\n");
+		ft_printf("Error : Map must be a rectangular\n");
 		free_map_check(check);
 		free_map(game);
 		exit(1);

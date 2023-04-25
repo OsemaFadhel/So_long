@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:58:56 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/24 22:33:40 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/25 16:38:40 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	move_up(t_game *game)
 	}
 	else if (game->map[game->player_y - 1][game->player_x] == 'N')
 	{
-		printf("You lost!\n");
+		ft_printf("You lost!\n");
 		close_game(game);
 	}
 	return (1);
@@ -76,7 +76,7 @@ int	move_down(t_game *game)
 	}
 	else if (game->map[game->player_y + 1][game->player_x] == 'N')
 	{
-		printf("You lost!\n");
+		ft_printf("You lost!\n");
 		close_game(game);
 	}
 	return (1);
@@ -103,7 +103,7 @@ int	move_right(t_game *game)
 	}
 	else if (game->map[game->player_y][game->player_x + 1] == 'N')
 	{
-		printf("You lost!\n");
+		ft_printf("You lost!\n");
 		close_game(game);
 	}
 	return (1);
@@ -130,7 +130,7 @@ int	move_left(t_game *game)
 	}
 	else if (game->map[game->player_y][game->player_x - 1] == 'N')
 	{
-		printf("You lost!\n");
+		ft_printf("You lost!\n");
 		close_game(game);
 	}
 	return (1);

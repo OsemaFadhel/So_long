@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:39:35 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/24 22:00:24 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/25 16:26:17 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,11 @@ void	put_enemy(t_game *game, int height, int width)
 
 void	set_win(t_game *game)
 {
-	int	height;
-	int	width;
+	int		height;
+	int		width;
+	char	*moves;
 
+	moves = ft_itoa(game->moves);
 	height = 0;
 	while (game->map[height])
 	{
@@ -97,4 +99,5 @@ void	set_win(t_game *game)
 		}
 		height++;
 	}
+	mlx_string_put(game->mlx, game->win, 15, 2, 12144232, moves);
 }

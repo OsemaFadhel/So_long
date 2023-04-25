@@ -29,7 +29,7 @@ void	checks(t_check *check, t_game *game)
 {
 	if (check_walls(check, check->map_height, check->map_width) == 0)
 	{
-		printf("ERROR, map walls\n");
+		ft_printf("ERROR, map walls\n");
 		free_map(game);
 		free_map_check(check);
 		exit(1);
@@ -37,7 +37,7 @@ void	checks(t_check *check, t_game *game)
 	check_map(check, game);
 	if (check->player != 1 || check->coin == 0 || check->exit != 1)
 	{
-		printf("ERROR, map\n");
+		ft_printf("ERROR, map\n");
 		free_map(game);
 		free_map_check(check);
 		exit(1);

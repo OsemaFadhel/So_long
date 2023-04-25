@@ -6,12 +6,14 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/09 21:01:17 by ofadhel           #+#    #+#              #
-#    Updated: 2023/04/24 22:35:14 by ofadhel          ###   ########.fr        #
+#    Updated: 2023/04/25 16:48:03 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = solong
-SRC = solong.c set_img.c read_map.c get_map_info.c key.c keys_2.c check.c
+PRINTF_PATH = ./printf
+PRINTF = $(PRINTF_PATH)
+SRC = solong.c set_img.c read_map.c get_map_info.c key.c keys_2.c check.c itoa.c
 OBJ		= 	$(SRC:.c=.o)
 CC = gcc
 CFLAGS = -Werror -Wall -Wextra
@@ -24,12 +26,15 @@ CFLAGS			=	-Wall -Wextra -Werror -g
 all:			$(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	make -C $(PRINTF_PATH)
+	$(CC) $(OBJ) $(PRINTF)/libftprintf.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
+	make clean -C ${PRINTF_PATH}
 	rm -rf ${OBJ}
 
 fclean:			clean
+	make fclean -C ${PRINTF_PATH}
 	rm -rf ${NAME}
 
 re:				fclean all

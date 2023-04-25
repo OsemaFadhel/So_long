@@ -6,11 +6,24 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:59:04 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/24 22:37:19 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/25 16:52:32 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
+
+void	check_map_name(char *str)
+{
+	int	i;
+
+	i = ft_strlen(str);
+	if (str[i - 1] != 'r' || str[i - 2] != 'e' || str[i - 3] != 'b'
+		|| str[i - 4] != '.')
+	{
+		ft_printf("Error: map name must be .ber\n");
+		exit(1);
+	}
+}
 
 int	close_game(t_game *game)
 {
@@ -26,9 +39,10 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		printf("Error\nYou didn't put the map as an argument\n");
+		ft_printf("Error: no map\n");
 		return (1);
 	}
+	check_map_name(av[1]);
 	game.map = read_map(av[1], &game);
 	check.map = read_map(av[1], &game);
 	init(&game, &check);
@@ -40,7 +54,6 @@ int	main(int ac, char **av)
 	xpm_img(&game);
 	set_win(&game);
 	mlx_key_hook(game.win, key, &game);
-	mlx_string_put(game.mlx, game.win, 1, 1, 12744232, itoa(game->move_count));
 	mlx_hook(game.win, 17, 0, close_game, &game);
 	mlx_loop(game.mlx);
 	free(game.mlx);

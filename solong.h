@@ -6,7 +6,7 @@
 /*   By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:59:02 by ofadhel           #+#    #+#             */
-/*   Updated: 2023/04/24 22:34:17 by ofadhel          ###   ########.fr       */
+/*   Updated: 2023/04/25 16:42:50 by ofadhel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <string.h>
-# include <stdio.h>
+# include <stddef.h>
 # include <errno.h>
+# include "printf/ft_printf.h"
 
 # define UP 126
 # define DOWN 125
@@ -65,6 +66,8 @@ size_t	ft_strlen(const char *s);
 int		count_words(char const *s, char c);
 char	*strsub(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
+size_t	ft_len(long nb);
+char	*ft_itoa(int n);
 
 void	init(t_game *game, t_check *check);
 char	**read_map(char *file, t_game *game);
